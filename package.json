@@ -1,0 +1,39 @@
+{
+  "name": "complyci",
+  "version": "1.0.0",
+  "description": "Check that your apps dependancies comply with your open source licence policy each time your app is updated.",
+  "engines": {
+    "node": "6.9.2"
+  },
+  "main": "server.js",
+  "scripts": {
+    "test:lint": "eslint .",
+    "test:unit": "mocha test/*.js --reporter mocha-multi --reporter-options dot=-,xunit=tested.xml",
+    "test": "npm run test:lint && npm run test:unit",
+    "test:request": "curl -H \"Content-Type: application/json\" -X POST --data @test/pushEvent.json http://localhost:3000/api",
+    "start-dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tom-Davidson/complyci.git"
+  },
+  "author": "Tom Davidson <tom@davidson.me.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Tom-Davidson/complyci/issues"
+  },
+  "homepage": "https://github.com/Tom-Davidson/complyci#readme",
+  "devDependencies": {
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb-base": "^11.0.1",
+    "eslint-plugin-import": "^2.2.0",
+    "expect": "^1.20.2",
+    "mocha": "^3.2.0",
+    "mocha-multi": "^0.10.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "co-body": "^4.2.0",
+    "koa": "^1.2.5"
+  }
+}
