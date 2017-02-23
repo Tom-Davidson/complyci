@@ -1,9 +1,15 @@
 const fs = require('fs');
 const koa = require('koa');
 const parse = require('co-body');
-const simpleGit = require('simple-git')('./repos');
+const git = require('simple-git')('./repos');
 
 const app = koa();
+function repoChanged(repo) {
+  console.log(`repoChanged: ${repo}`); // eslint-disable-line no-console
+  if (fs.existsSync(`repos/${repo}/package.json`)) {
+    console.log('  has a package.json'); // eslint-disable-line no-console
+  }
+}
 
 // x-response-time
 app.use(function* headerResponseTime(next) {
@@ -25,16 +31,16 @@ app.use(function* complyci() {
     const body = yield parse(this, { limit: '10kb' });
     this.body = `Push to ${body.repository.full_name}`;
     if (!fs.existsSync(`repos/${body.repository.full_name}`)) {
-      simpleGit.clone(
+      git.clone(
         `git@github.com:${body.repository.full_name}.git`,
         `${body.repository.full_name}`,
         {},
         () => {
-          console.log('Checkout complete'); // eslint-disable-line no-console
+          repoChanged(body.repository.full_name);
         });
     } else {
-      simpleGit.cwd(`repos/${body.repository.full_name}`).pull(() => {
-        console.log('Pull complete'); // eslint-disable-line no-console
+      git.cwd(`repos/${body.repository.full_name}`).pull(() => {
+        repoChanged(body.repository.full_name);
       });
     }
   } else {
