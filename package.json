@@ -35,6 +35,7 @@
   "dependencies": {
     "co-body": "^4.2.0",
     "koa": "^1.2.5",
+    "licenses": "0.0.20",
     "simple-git": "^1.66.0"
   }
 }

@@ -2,12 +2,40 @@ const fs = require('fs');
 const koa = require('koa');
 const parse = require('co-body');
 const git = require('simple-git')('./repos');
+const licenseChecker = require('licenses');
 
 const app = koa();
-function repoChanged(repo) {
-  console.log(`repoChanged: ${repo}`); // eslint-disable-line no-console
+function licensesUpdate(project, hash, licenses) {
+  console.log(`Project: ${project}`); // eslint-disable-line no-console
+  console.log(`Commit: ${hash}`); // eslint-disable-line no-console
+  console.log(`Licenses: ${JSON.stringify(licenses)}`); // eslint-disable-line no-console
+}
+function repoChanged(repo, hash) {
   if (fs.existsSync(`repos/${repo}/package.json`)) {
-    console.log('  has a package.json'); // eslint-disable-line no-console
+    const licenseChecks = [];
+    const packageJSON = JSON.parse(fs.readFileSync(`repos/${repo}/package.json`));
+    Object.keys(packageJSON.dependencies).forEach((dependency) => {
+      licenseChecks.push(new Promise((resolve, reject) => {
+        licenseChecker(
+          dependency,
+          { registry: 'https://registry.npmjs.org/' },
+          function recordDepLic(err, license) { // eslint-disable-line prefer-arrow-callback
+            if (err === undefined) {
+              resolve({ dep: dependency, lic: license.join(',') });
+            } else {
+              reject({ dep: dependency, lic: 'Unknown' });
+            }
+          }.bind({ licenseChecks, dependency }) // eslint-disable-line no-extra-bind, comma-dangle
+        );
+      }));
+    });
+    Promise.all(licenseChecks).then((licenseCheckResults) => {
+      const licenses = {};
+      licenseCheckResults.forEach((licenseCheckResult) => {
+        licenses[licenseCheckResult.dep] = licenseCheckResult.lic;
+      });
+      licensesUpdate(repo, hash, licenses);
+    });
   }
 }
 
@@ -36,11 +64,11 @@ app.use(function* complyci() {
         `${body.repository.full_name}`,
         {},
         () => {
-          repoChanged(body.repository.full_name);
+          repoChanged(body.repository.full_name, body.after);
         });
     } else {
       git.cwd(`repos/${body.repository.full_name}`).pull(() => {
-        repoChanged(body.repository.full_name);
+        repoChanged(body.repository.full_name, body.after);
       });
     }
   } else {
