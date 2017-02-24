@@ -38,3 +38,7 @@ jspm_packages
 
 # Build artifacts
 tested.xml
+
+# Runtime files
+repos/*
+!repos/.keep
