@@ -1,3 +1,4 @@
+require('dotenv').config();
 const fs = require('fs');
 const koa = require('koa');
 const parse = require('co-body');
@@ -76,4 +77,4 @@ app.use(function* complyci() {
   }
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 3000);

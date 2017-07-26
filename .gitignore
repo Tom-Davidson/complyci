@@ -42,3 +42,5 @@ tested.xml
 # Runtime files
 repos/*
 !repos/.keep
+
+.env
