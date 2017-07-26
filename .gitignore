@@ -3,6 +3,7 @@ node_modules
 
 # Dev environment
 .env
+id_rsa
 
 # Build artifacts
 tested.xml
