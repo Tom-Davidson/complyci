@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Check that your apps dependancies comply with your open source licence policy each time your app is updated.",
   "engines": {
-    "node": "6.9.2"
+    "node": "8.2.1"
   },
   "main": "server.js",
   "scripts": {
