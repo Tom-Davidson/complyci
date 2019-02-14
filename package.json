@@ -27,10 +27,10 @@
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.16.0",
-    "expect": "24.0.0",
+    "expect": "24.1.0",
     "mocha": "5.2.0",
     "mocha-multi": "1.0.1",
-    "nodemon": "1.18.9",
+    "nodemon": "1.18.10",
     "sinon": "7.2.3"
   },
   "dependencies": {
