@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: node:8.2.1
+      - image: node:11.9.0
     working_directory: ~/repo
     steps:
       - checkout
