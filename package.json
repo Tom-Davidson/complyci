@@ -30,7 +30,7 @@
     "expect": "24.1.0",
     "mocha": "6.0.0",
     "mocha-multi": "1.0.1",
-    "nodemon": "1.18.10",
+    "nodemon": "1.19.1",
     "sinon": "7.2.4"
   },
   "dependencies": {
