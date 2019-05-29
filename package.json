@@ -7,8 +7,8 @@
   },
   "main": "server.js",
   "scripts": {
-    "test:lint": "eslint .",
-    "test:unit": "mocha test/*.js --reporter mocha-multi --reporter-options dot=-,xunit=tested.xml",
+    "test:lint": "prettier --check server.js 'lib/**/*.js' 'tests/**/*.js'",
+    "test:unit": "jest",
     "test": "npm run test:lint && npm run test:unit",
     "test:request": "curl -H \"Content-Type: application/json\" -X POST --data @test/pushEvent.json http://localhost:3000/api",
     "start-dev": "nodemon server.js"
@@ -24,20 +24,15 @@
   },
   "homepage": "https://github.com/Tom-Davidson/complyci#readme",
   "devDependencies": {
-    "eslint": "5.14.1",
-    "eslint-config-airbnb-base": "13.1.0",
-    "eslint-plugin-import": "2.16.0",
-    "expect": "24.1.0",
-    "mocha": "6.0.0",
-    "mocha-multi": "1.0.1",
-    "nodemon": "1.18.10",
-    "sinon": "7.2.4"
+    "jest": "24.8.0",
+    "nodemon": "1.19.1",
+    "prettier": "1.17.1"
   },
   "dependencies": {
     "co-body": "6.0.0",
-    "dotenv": "6.2.0",
+    "dotenv": "8.0.0",
     "koa": "2.7.0",
     "licenses": "0.0.20",
-    "simple-git": "1.107.0"
+    "simple-git": "1.113.0"
   }
 }
