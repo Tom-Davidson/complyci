@@ -1,8 +1,8 @@
-const assert = require('assert');
-const sinon = require('sinon');
-const git = require('../lib/git');
+const assert = require("assert");
+const sinon = require("sinon");
+const git = require("../lib/git");
 
-describe('git', () => {
+describe("git", () => {
   // it('fetches a fresh repo', () => {
   //   const repo = '404-User/404-Project';
   //   const hash = '01234567890abcdefghijklmnopqrstuvwxyz';
@@ -24,30 +24,24 @@ describe('git', () => {
   //   simplegitFake.restore();
   //   fsMock.restore();
   // });
-  it('updates an existing repo', () => {
-    const repo = '404-User/404-Project';
-    const hash = '01234567890abcdefghijklmnopqrstuvwxyz';
+  it("updates an existing repo", () => {
+    const repo = "404-User/404-Project";
+    const hash = "01234567890abcdefghijklmnopqrstuvwxyz";
     const callback = sinon.stub();
     const fsMock = {};
     fsMock.existsSync = sinon.stub().returns(true);
     const gitFake = {};
     gitFake.cwd = sinon.stub().returns(gitFake);
-    gitFake.pull = sinon.stub().callsFake((fn) => {
+    gitFake.pull = sinon.stub().callsFake(fn => {
       fn();
     });
     const deps = {
       git: gitFake,
-      fs: fsMock,
+      fs: fsMock
     };
 
-    git.fetch(
-      repo,
-      hash,
-      callback,
-      null,
-      deps,
-    );
+    git.fetch(repo, hash, callback, null, deps);
 
-    assert(callback.callCount === 1, 'callback called once');
+    assert(callback.callCount === 1, "callback called once");
   });
 });
