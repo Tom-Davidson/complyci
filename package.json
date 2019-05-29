@@ -35,7 +35,7 @@
   },
   "dependencies": {
     "co-body": "6.0.0",
-    "dotenv": "6.2.0",
+    "dotenv": "8.0.0",
     "koa": "2.7.0",
     "licenses": "0.0.20",
     "simple-git": "1.107.0"
