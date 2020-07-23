@@ -9,13 +9,13 @@ describe("git", () => {
     });
     const deps = {
       fs: {
-        existsSync: () => true
+        existsSync: () => true,
       },
       git: {
         cwd: () => {
-          return { pull: fn => fn() };
-        }
-      }
+          return { pull: (fn) => fn() };
+        },
+      },
     };
 
     git.fetch(repo, hash, callback, null, deps);
