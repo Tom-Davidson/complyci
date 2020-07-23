@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Check that your apps dependancies comply with your open source licence policy each time your app is updated.",
   "engines": {
-    "node": "11.9.0"
+    "node": "12.18.3"
   },
   "main": "server.js",
   "scripts": {
@@ -24,15 +24,15 @@
   },
   "homepage": "https://github.com/Tom-Davidson/complyci#readme",
   "devDependencies": {
-    "jest": "24.8.0",
-    "nodemon": "1.19.1",
-    "prettier": "1.17.1"
+    "jest": "26.1.0",
+    "nodemon": "2.0.4",
+    "prettier": "2.0.5"
   },
   "dependencies": {
     "co-body": "6.0.0",
-    "dotenv": "8.0.0",
-    "koa": "2.7.0",
+    "dotenv": "8.2.0",
+    "koa": "2.13.0",
     "licenses": "0.0.20",
-    "simple-git": "1.113.0"
+    "simple-git": "2.15.0"
   }
 }
