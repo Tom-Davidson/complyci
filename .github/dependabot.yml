@@ -2,22 +2,7 @@ version: 2
 updates:
 - package-ecosystem: npm
   directory: "/"
+  allow:
+    - dependency-type: "direct"
   schedule:
     interval: daily
-  open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: y18n
-    versions:
-    - 4.0.1
-  - dependency-name: simple-git
-    versions:
-    - 2.31.0
-    - 2.32.0
-    - 2.34.2
-    - 2.35.0
-    - 2.35.1
-    - 2.35.2
-    - 2.36.0
-    - 2.36.1
-    - 2.36.2
-    - 2.37.0
