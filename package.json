@@ -25,7 +25,7 @@
   "homepage": "https://github.com/Tom-Davidson/complyci#readme",
   "devDependencies": {
     "jest": "27.2.5",
-    "nodemon": "2.0.13",
+    "nodemon": "2.0.15",
     "prettier": "2.4.1"
   },
   "dependencies": {
