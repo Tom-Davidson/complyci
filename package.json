@@ -33,6 +33,6 @@
     "dotenv": "10.0.0",
     "koa": "2.13.3",
     "licenses": "0.0.20",
-    "simple-git": "2.46.0"
+    "simple-git": "3.0.3"
   }
 }
